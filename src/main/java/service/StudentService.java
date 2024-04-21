@@ -19,7 +19,7 @@ public class StudentService {
     }
 
 
-   public String saveCustomer(String name,String email,Integer age){
+   public String registerCustomer(String name,String email,Integer age){
         Customer customer1 = new Customer();
         Session session= factory.openSession();
        Transaction transaction = session.getTransaction();
@@ -27,6 +27,10 @@ public class StudentService {
        customer1.setName(name);
        customer1.setEmail(email);
        customer1.setAge(age);
+       customer1.setCurrent_Money(0);
+       customer1.setTotal_money(0);
+       customer1.setWithdrawn_money(0);
+       customer1.setDeposited_money(0);
        session.persist(customer1);
        transaction.commit();
        session.close();
@@ -94,5 +98,83 @@ public class StudentService {
         return "Customer with " + id + "is Updated SuccessFully";
     }
 
+
+    public String DepositedAmountProfile(Integer id,Integer amount){
+        Session session = factory.openSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        switch(amount){
+            case 0:{
+                throw new RuntimeException("Amount should be greater than 0");
+            }
+            case 5: {
+                throw new RuntimeException("Amount should be greater than 5");
+            }
+            default:
+        }
+        Customer customer = session.find(Customer.class,id);
+        if(customer == null){
+            throw new RuntimeException("Customer does not exists");
+        }
+        int newTotalCash = customer.getTotal_money() + amount;
+        int newCurrentMoney = newTotalCash;
+        int Deposited  = amount;
+        customer.setTotal_money(newTotalCash);
+        customer.setCurrent_Money(newCurrentMoney);
+        customer.setDeposited_money(Deposited);
+        session.persist(customer);
+        transaction.commit();
+        session.close();
+        return "Deposited Amount : " + Deposited +  "\t" + "newTotalCash : " + newTotalCash + "\t" + "CurrentMoney : " + "\t" + newCurrentMoney;
+    }
+
+
+    public String withDrawn(Integer id, Integer amount){
+        Session session = factory.openSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        switch(amount){
+            case 0:{
+                throw new RuntimeException("Cannot withdrawn 0");
+            }
+
+            case 5:{
+                throw new RuntimeException("Cannot withdrawn amount less or equal than 5");
+            }
+            default:
+        }
+        Customer customer = session.find(Customer.class,id);
+        if(customer == null || customer.getId() == null){
+            throw new RuntimeException("Customer Does not Exists");
+        }
+        if(customer.getTotal_money() < amount){
+            throw new RuntimeException("WithDrawn Failed");
+        }
+        int newTotalCash = customer.getTotal_money() - amount;
+        int currentCash = newTotalCash;
+        int withDrawnAmount = amount;
+
+        customer.setWithdrawn_money(withDrawnAmount);
+        customer.setCurrent_Money(currentCash);
+        customer.setTotal_money(newTotalCash);
+
+        session.persist(customer);
+        transaction.commit();
+        session.close();
+        return "WithDrawn Amount : " + withDrawnAmount +  "\t" + "newTotalCash : " + newTotalCash + "\t" + "CurrentMoney : " + "\t" + currentCash;
+    }
+
+    public Customer details(Integer id){
+        Session session = factory.openSession();
+        Transaction transaction = session.getTransaction();
+        transaction.begin();
+        Customer customer = session.find(Customer.class,id);
+        if(customer == null){
+            throw new RuntimeException("Customer Does not Exists");
+        }
+        transaction.commit();
+        session.close();
+        return  customer;
+    }
 
 }

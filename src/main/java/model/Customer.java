@@ -1,10 +1,7 @@
 package model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 
@@ -20,6 +17,20 @@ public class Customer {
 
 
     private Integer age;
+
+
+    private Integer total_money;
+
+
+    private Integer current_Money;
+
+
+    private Integer withdrawn_money;
+
+
+    private Integer deposited_money;
+
+
 
     public Integer getId() {
         return id;
@@ -61,5 +72,37 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public Integer getTotal_money() {
+        return total_money;
+    }
+
+    public void setTotal_money(Integer total_money) {
+        this.total_money = total_money;
+    }
+
+    public Integer getCurrent_Money() {
+        return current_Money;
+    }
+
+    public void setCurrent_Money(Integer current_Money) {
+        this.current_Money = current_Money;
+    }
+
+    public Integer getWithdrawn_money() {
+        return withdrawn_money;
+    }
+
+    public void setWithdrawn_money(Integer withdrawn_money) {
+        this.withdrawn_money = withdrawn_money;
+    }
+
+    public Integer getDeposited_money() {
+        return deposited_money;
+    }
+
+    public void setDeposited_money(Integer deposited_money) {
+        this.deposited_money = deposited_money;
     }
 }
