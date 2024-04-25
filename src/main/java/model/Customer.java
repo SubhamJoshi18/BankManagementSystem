@@ -1,108 +1,131 @@
 package model;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-
-public class Customer {
-
+public class Customer{
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private  Integer id;
-
-    private String name;
-
-    private String email;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer account_id;
 
 
-    private Integer age;
+    private String accountName;
+
+    private String accountNumber;
+
+    private String pin;
 
 
-    private Integer total_money;
+    private long PhoneNumber;
 
 
-    private Integer current_Money;
+    private Integer currentBalance;
+    private Integer  total_amount;
+
+    private Integer deposited_amount;
+
+    private Integer  withDrawn_amount;
 
 
-    private Integer withdrawn_money;
 
+    private String role;
 
-    private Integer deposited_money;
-
-
-
-    public Integer getId() {
-        return id;
+    public Integer getAccount_id() {
+        return account_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAccount_id(Integer account_id) {
+        this.account_id = account_id;
     }
 
-    public String getName() {
-        return name;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getPin() {
+        return pin;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    public long getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(long phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
+    public Integer getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(Integer currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public Integer getTotal_amount() {
+        return total_amount;
+    }
+
+    public void setTotal_amount(Integer total_amount) {
+        this.total_amount = total_amount;
+    }
+
+    public Integer getDeposited_amount() {
+        return deposited_amount;
+    }
+
+    public void setDeposited_amount(Integer deposited_amount) {
+        this.deposited_amount = deposited_amount;
+    }
+
+    public Integer getWithDrawn_amount() {
+        return withDrawn_amount;
+    }
+
+    public void setWithDrawn_amount(Integer withDrawn_amount) {
+        this.withDrawn_amount = withDrawn_amount;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
+                "account_id=" + account_id +
+                ", accountName='" + accountName + '\'' +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", pin='" + pin + '\'' +
+                ", PhoneNumber=" + PhoneNumber +
+                ", currentBalance=" + currentBalance +
+                ", total_amount=" + total_amount +
+                ", deposited_amount=" + deposited_amount +
+                ", withDrawn_amount=" + withDrawn_amount +
+                ", role='" + role + '\'' +
                 '}';
-    }
-
-    public Integer getTotal_money() {
-        return total_money;
-    }
-
-    public void setTotal_money(Integer total_money) {
-        this.total_money = total_money;
-    }
-
-    public Integer getCurrent_Money() {
-        return current_Money;
-    }
-
-    public void setCurrent_Money(Integer current_Money) {
-        this.current_Money = current_Money;
-    }
-
-    public Integer getWithdrawn_money() {
-        return withdrawn_money;
-    }
-
-    public void setWithdrawn_money(Integer withdrawn_money) {
-        this.withdrawn_money = withdrawn_money;
-    }
-
-    public Integer getDeposited_money() {
-        return deposited_money;
-    }
-
-    public void setDeposited_money(Integer deposited_money) {
-        this.deposited_money = deposited_money;
     }
 }
